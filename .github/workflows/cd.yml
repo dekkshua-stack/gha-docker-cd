@@ -28,3 +28,7 @@ jobs:
           tags: |
             dekkshitha/gha-docker-cd:latest
             dekkshitha/gha-docker-cd:${{ github.sha }}
+      - name: Deploy to Render
+        run: curl --fail --silent --show-error -X POST "$RENDER_DEPLOY_HOOK"
+        env:
+          RENDER_DEPLOY_HOOK: ${{ secrets.RENDER_DEPLOY_HOOK }}
